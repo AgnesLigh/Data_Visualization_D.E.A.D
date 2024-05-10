@@ -26,12 +26,14 @@ layout = dbc.Container([
                 dbc.Accordion([
                     dbc.AccordionItem(
                         [
-                            html.P("To explore the relationship between 'where' and 'what' "),
+                            html.P(children="To explore the relationship between 'where' and 'what' "),
+                            html.P(children="Based on this page of visualization, you will be able to have insights about which nation holds the most orders/customers/cart price, which subtypes of products have the best sales in that nation and what are their main customers with the distribution of the 3 main customer types.")
                         ],
                         title="Visualization plot 1",
                     ),
                     dbc.AccordionItem([
-                        html.P("To explore the relationship between 'when' and 'what' "),
+                        html.P(children="To explore the relationship between 'when' and 'what' "),
+                        html.P(children="..."),
                     ],
                         title="Visualization plot 2"),
                 ],
@@ -47,8 +49,8 @@ layout = dbc.Container([
         html.Div([
             html.H3(children="Team Member:"),
             html.Div('Fan Yu (r0862624)'),
-            html.Div(),
-            html.Div()
+            html.Div('John Kyle Cooper (r0877058)'),
+            html.Div('Yu-Ting, Ma(r0957353)')
         ])
     ])
 ])
