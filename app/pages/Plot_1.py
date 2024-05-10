@@ -38,7 +38,7 @@ layout= dbc.Container([
   dbc.Row([
         html.Div([
             html.H3(children="To explore the relationship between 'where' and 'what' "),
-            html.P("This plot aims to find possible relationship between ...")
+            html.P("In this page, you can find the visualization of the order and customer related  information in all the nations. The size and the color of the circle reflects on the number of orders/customers/cart price in that specific nation. The bigger and the lighter the color of the circle means larger the amount of orders/customers/cart price. If you click on the location of a certain nation, we will find more details about the order of that nation. The detailed information consists of a pie chart which indicates the distribution of users/customers, a bar chart of the list of the territories in that nation with the amount of order in each territory and a bar chart indicating the amount of sales from each subtype of products. ")
         ], style={"width":"20cm"})
     ]),
     html.Br(),
