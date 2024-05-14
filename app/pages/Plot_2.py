@@ -41,8 +41,8 @@ layout= dbc.Container([
   dbc.Row([
         html.Div([
             html.H3(children="To explore the relationship between 'when' and 'what' "),
-            html.P(children="In this page, you will find the visualization of the order and delivery related information. There are mainly two parts of the visualization.")
-            himl.P(children="In the first part, we focus on 'when'. As you can find the amount of order and delivery at different time frame of your interest. Additionally, you can also see the average delivery time based on the two information above. For the time frame of your interest, you can first click and select in the calender for a general time frame. Then you can drag-select a more specific time frame to have a closer look at the fluctuation of order/delivery/average delivery time. (Small tip: if you double click on the bar chart of specific time frame, you can go back to the general time frame selected from calender) ")
+            html.P(children="In this page, you will find the visualization of the order and delivery related information. There are mainly two parts of the visualization."),
+            html.P(children="In the first part, we focus on 'when'. As you can find the amount of order and delivery at different time frame of your interest. Additionally, you can also see the average delivery time based on the two information above. For the time frame of your interest, you can first click and select in the calender for a general time frame. Then you can drag-select a more specific time frame to have a closer look at the fluctuation of order/delivery/average delivery time. (Small tip: if you double click on the bar chart of specific time frame, you can go back to the general time frame selected from calender) ")
         ], style={"width":"20cm"})
     ]),
     html.Br(),
@@ -88,7 +88,8 @@ layout= dbc.Container([
         start_date='2019-01-01',
         end_date='2019-12-31',
         display_format='YYYY-MM-DD')
-    ])]),
+    ])
+    ]),
     html.Div([
         dcc.Graph(id='subtype-bar-chart')
     ])
