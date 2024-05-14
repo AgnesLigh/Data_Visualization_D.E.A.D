@@ -33,7 +33,7 @@ layout = dbc.Container([
                     ),
                     dbc.AccordionItem([
                         html.P(children="To explore the relationship between 'when' and 'what' "),
-                        html.P(children="..."),
+                        html.P(children="Based on this visualization, you will be able to have insights about the high and low season for order. Moreover, you will be able to discover the order fluctuation of each subtype of product, and see which subtypes of product have the best sales among all the subtypes."),
                     ],
                         title="Visualization plot 2"),
                 ],
