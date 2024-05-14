@@ -27,7 +27,7 @@ subtype_count = pd.read_csv('https://raw.githubusercontent.com/AgnesLigh/Data_Vi
 sub_orders = pd.read_csv('https://raw.githubusercontent.com/AgnesLigh/Data_Visualization_D.E.A.D/main/data/orders_territory.csv')
 delivery_time = pd.read_csv("https://raw.githubusercontent.com/AgnesLigh/Data_Visualization_D.E.A.D/main/data/delivery_date_nation.csv")
 
-average_delivery_time_nation = delivery_time.groupby('Nation')["AverageDeliveryTime"].mean().sort_values()
+average_delivery_time_nation = delivery_time.groupby('Nation')["AverageDeliveryTime"].mean().sort_values().reset_index(name="AverageDeliveryTime")
 
 # Constants
 img_width = 1600
@@ -159,7 +159,8 @@ def update_details(clickData):
 )
 def update_details(clickData):
     if clickData is None:
-        fig = px.bar(average_delivery_time_nation,title="Average Delivery Time by Nation")
+        fig = px.bar(average_delivery_time_nation,x="Nation",y="AverageDeliveryTime",title="Average Delivery Time by Nation")
+        fig.update_layout(width=1000, height=400)
         return fig
     else:
         x_corr = clickData['points'][0]['x']
@@ -167,6 +168,7 @@ def update_details(clickData):
         nation = filtered_df.iloc[0]['Nation']
         filtered_delevery_time = delivery_time[delivery_time["Nation"] == nation]
         fig = px.bar(filtered_delevery_time,x="OrderDate",y="AverageDeliveryTime",title=f"Average Delivery Time of each date in {nation}")
+        fig.update_layout(width=1000, height=400)
         return fig
 
 # callback function of dropdown
