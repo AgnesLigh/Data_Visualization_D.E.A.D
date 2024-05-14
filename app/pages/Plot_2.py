@@ -18,7 +18,8 @@ dash.register_page(__name__,
 
 # 示例数据
 df = pd.read_csv("https://raw.githubusercontent.com/AgnesLigh/Data_Visualization_D.E.A.D/main/data/orders_nation_season.csv")
-subtype_order = pd.read_csv("https://raw.githubusercontent.com/AgnesLigh/Data_Visualization_D.E.A.D/main/data/subtype_order_month.csv")
+subtype_order = pd.read_csv("https://raw.githubusercontent.com/AgnesLigh/Data_Visualization_D.E.A.D/main/data/subtype_order_date.csv")
+subtype_delivery = pd.read_csv("https://raw.githubusercontent.com/AgnesLigh/Data_Visualization_D.E.A.D/main/data/subtype_delivery_date.csv")
 
 df["OrderDate"] = pd.to_datetime(df["OrderDate"],format="%d/%m/%Y")
 df["DeliveryDate"] = pd.to_datetime(df["OrderDate"],format="%d/%m/%Y")
@@ -33,11 +34,8 @@ delivery_counts = delivery_counts.sort_values("DeliveryDate")
 
 average_delivery_time = df.groupby('OrderDate')['DeliveryTime'].mean().reset_index()
 
-subtype_fig = px.bar(subtype_order, x='OrderMonth', y='Counts', color='Subtype', 
-                     color_continuous_scale= "Viridis", title='Order Counts by Subtype and Date')
-
-subtype_fig.update_layout(barmode='stack', xaxis={'categoryorder':'category ascending'})
-
+subtype_order["OrderDate"] = pd.to_datetime(subtype_order["OrderDate"],format="%d/%m/%Y")
+subtype_delivery["DeliveryDate"] = pd.to_datetime(subtype_delivery["DeliveryDate"],format="%d/%m/%Y")
 
 layout= dbc.Container([
   dbc.Row([
@@ -58,15 +56,34 @@ layout= dbc.Container([
     ),
     dcc.DatePickerRange(
         id='date-picker-range',
-        start_date=order_counts['OrderDate'].min(),
-        end_date=delivery_counts['DeliveryDate'].max(),
+        min_date_allowed=order_counts['OrderDate'].min(),
+        max_date_allowed=delivery_counts['DeliveryDate'].max(),
+        start_date='2019-01-01',
+        end_date='2023-12-31',
         display_format='YYYY-MM-DD')
     ])]),
     html.Div([
         dcc.Graph(id='sales-bar-chart')
     ]),
+    dbc.Row([
     html.Div([
-        dcc.Graph(id='subtype-bar-chart',figure=subtype_fig)
+    dcc.Dropdown(
+        id='subtype-date-type-picker',
+        options=["Order Date", "Delivery Date"],
+        value="Order Date",
+        clearable=False,  
+        style={'width': '50%'}
+    ),
+    dcc.DatePickerRange(
+        id='subtype-date-picker-range',
+        min_date_allowed=order_counts['OrderDate'].min(),
+        max_date_allowed=delivery_counts['DeliveryDate'].max(),
+        start_date='2019-01-01',
+        end_date='2019-12-31',
+        display_format='YYYY-MM-DD')
+    ])]),
+    html.Div([
+        dcc.Graph(id='subtype-bar-chart')
     ])
 ])
 
@@ -101,4 +118,28 @@ def update_graph(selected_date_type, start_date, end_date):
 
     return fig
 
+# Callback to update the graph based on the selected date type and date range
+@callback(
+    Output('subtype-bar-chart', 'figure'),
+    [Input('subtype-date-type-picker', 'value'),
+     Input('subtype-date-picker-range', 'start_date'),
+     Input('subtype-date-picker-range', 'end_date')]
+)
+def update_graph(selected_date_type, start_date, end_date):
+    if selected_date_type == 'Order Date':
+        mask = (subtype_order['OrderDate'] >= start_date) & (subtype_order['OrderDate'] <= end_date)
+        filtered_subtype_order = subtype_order.loc[mask]
+        fig = px.bar(filtered_subtype_order, x='OrderDate', y='Counts', color='Subtype', 
+                 color_continuous_scale= "Viridis", title='Order Counts by Subtype and Date')
 
+        fig.update_layout(barmode='stack', xaxis={'categoryorder':'category ascending'})
+
+    elif selected_date_type == 'Delivery Date':
+        mask = (subtype_delivery['DeliveryDate'] >= start_date) & (subtype_delivery['DeliveryDate'] <= end_date)
+        filtered_subtype_delivery = subtype_delivery.loc[mask]
+        fig = px.bar(filtered_subtype_delivery, x='DeliveryDate', y='Counts', color='Subtype', 
+                 color_continuous_scale= "Viridis", title='Order Counts by Subtype and Date')
+
+        fig.update_layout(barmode='stack', xaxis={'categoryorder':'category ascending'})
+
+    return fig
