@@ -41,8 +41,8 @@ layout= dbc.Container([
   dbc.Row([
         html.Div([
             html.H3(children="To explore the relationship between 'when' and 'what' "),
-            html.P("In this page, you will find the visualization of the order and delivery related information. There are mainly two parts of the visualization.
-            In the first part, we focus on "when". As you can find the amount of order and delivery at different time frame of your interest. Additionally, you can also see the average delivery time based on the two information above. For the time frame of your interest, you can first click and select in the calender for a general time frame. Then you can drag-select a more specific time frame to have a closer look at the fluctuation of order/delivery/average delivery time. (Small tip: if you double click on the bar chart of specific time frame, you can go back to the general time frame selected from calender) ")
+            html.P(children="In this page, you will find the visualization of the order and delivery related information. There are mainly two parts of the visualization.")
+            himl.P(children="In the first part, we focus on 'when'. As you can find the amount of order and delivery at different time frame of your interest. Additionally, you can also see the average delivery time based on the two information above. For the time frame of your interest, you can first click and select in the calender for a general time frame. Then you can drag-select a more specific time frame to have a closer look at the fluctuation of order/delivery/average delivery time. (Small tip: if you double click on the bar chart of specific time frame, you can go back to the general time frame selected from calender) ")
         ], style={"width":"20cm"})
     ]),
     html.Br(),
@@ -68,7 +68,7 @@ layout= dbc.Container([
     ]),
     dbc.Row([
         html.Div([
-            html.P("For the second part, we combine "when" and "what". You can see the whole distribution of all the subtypes of product within certain time frame of your choice. You can select a sepecfic subtype or few subtypes of interest to see the distribution. The drag-select function for a more specific time frame and the doubble-click resetting function can also be applied here. ")
+            html.P("For the second part, we combine 'when' and 'what'. You can see the whole distribution of all the subtypes of product within certain time frame of your choice. You can select a sepecfic subtype or few subtypes of interest to see the distribution. The drag-select function for a more specific time frame and the doubble-click resetting function can also be applied here. ")
         ], style={"width":"20cm"})
     ]),
     html.Br(),
