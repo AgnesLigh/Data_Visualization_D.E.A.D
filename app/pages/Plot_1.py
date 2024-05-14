@@ -25,7 +25,9 @@ gray_image_path = "https://raw.githubusercontent.com/AgnesLigh/Data_Visualizatio
 df = pd.read_csv('https://raw.githubusercontent.com/AgnesLigh/Data_Visualization_D.E.A.D/main/data/data_sample.csv')
 subtype_count = pd.read_csv('https://raw.githubusercontent.com/AgnesLigh/Data_Visualization_D.E.A.D/main/data/subtype_nation.csv')
 sub_orders = pd.read_csv('https://raw.githubusercontent.com/AgnesLigh/Data_Visualization_D.E.A.D/main/data/orders_territory.csv')
+delivery_time = pd.read_csv("https://raw.githubusercontent.com/AgnesLigh/Data_Visualization_D.E.A.D/main/data/delivery_date_nation.csv")
 
+average_delivery_time_nation = delivery_time.groupby('Nation')["AverageDeliveryTime"].mean().sort_values()
 
 # Constants
 img_width = 1600
@@ -38,7 +40,7 @@ layout= dbc.Container([
   dbc.Row([
         html.Div([
             html.H3(children="To explore the relationship between 'where' and 'what' "),
-            html.P("In this page, you can find the visualization of the order and customer related  information in all the nations. You can select a specific nation or several nations of your interest to show on the map. The size and the color of the circle reflects on the number of orders/customers/cart price in that specific nation. The bigger and the lighter the color of the circle means larger the amount of orders/customers/cart price. If you click on the location of a certain nation, we will find more details about the order of that nation. The detailed information consists of a pie chart which indicates the distribution of users/customers, a bar chart of the list of the territories in that nation with the amount of order in each territory and a bar chart indicating the amount of sales from each subtype of products. ")
+            html.P("In this page, you can find the visualization of the order and customer related  information in all the nations. The size and the color of the circle reflects on the number of orders/customers/cart price in that specific nation. The bigger and the lighter the color of the circle means larger the amount of orders/customers/cart price. If you click on the location of a certain nation, we will find more details about the order of that nation. The detailed information consists of a pie chart which indicates the distribution of users/customers, a bar chart of the list of the territories in that nation with the amount of order in each territory and a bar chart indicating the amount of sales from each subtype of products. ")
         ], style={"width":"20cm"})
     ]),
     html.Br(),
@@ -62,6 +64,10 @@ layout= dbc.Container([
     dbc.Row([
         html.Div([
             dcc.Graph(id='details-graph-products-bar-chart')])
+    ]),
+    dbc.Row([
+        html.Div([
+            dcc.Graph(id='delivery-time-bar-chart')])
     ])
 ])
 
@@ -146,6 +152,22 @@ def update_details(clickData):
         fig.update_layout(width=600, height=300)
         return fig
 
+# callback function of delivery time bar chart
+@callback(
+    Output('delivery-time-bar-chart', 'figure'),
+    Input('map-graph', 'clickData')
+)
+def update_details(clickData):
+    if clickData is None:
+        fig = px.bar(average_delivery_time_nation,title="Average Delivery Time by Nation")
+        return fig
+    else:
+        x_corr = clickData['points'][0]['x']
+        filtered_df = df[df['x'] == x_corr]
+        nation = filtered_df.iloc[0]['Nation']
+        filtered_delevery_time = delivery_time[delivery_time["Nation"] == nation]
+        fig = px.bar(filtered_delevery_time,x="OrderDate",y="AverageDeliveryTime",title=f"Average Delivery Time of each date in {nation}")
+        return fig
 
 # callback function of dropdown
 
