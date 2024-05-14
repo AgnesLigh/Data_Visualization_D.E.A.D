@@ -18,7 +18,7 @@ dash.register_page(__name__,
 layout= dbc.Container([
   dbc.Row([
         html.Div([
-            html.H3(children="Conclusions and Key findings"),
+            html.H3(children="Conclusions and Key Findings"),
             html.P(children="Our three guiding questions:"),
             html.P(children="1. How can we visualize the delivery times across the regions of Faerun to find areas of improvement in shipping times for the DEAD company?"),
             html.P(children="2. What is the best way to map out the best and worst selling products sold by the DEAD company?"),
