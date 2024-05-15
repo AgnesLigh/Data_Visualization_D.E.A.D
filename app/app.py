@@ -44,7 +44,7 @@ app.layout = dbc.Container(
     [dbc.Row([
         dbc.Col([html.H1("Data Visualization",
                         style={'textAlign': 'center'}),
-                 html.H2("Implementation for Final Project 2023-2024",style={'textAlign': 'center'})
+                 html.H2("Implementation for Final Project Group 18 2023-2024",style={'textAlign': 'center'})
                  ])
     ]),
         html.Hr(),
