@@ -25,7 +25,7 @@ layout= dbc.Container([
                 html.P(children="  - Amn, Baldur's Gate and Calimshan are the top 3 nations by the amount of orders "),
                 html.P(children="2. Lack of seasonaly trend in orders "),
                 html.P(children="3. The anomaly in delivery time during June 2021 and onward (explained in the report)")
-            ]),
+            ], style = {"width":"25cm"}),
             html.Br(),
             html.Strong("Conclusions based on our three guiding questions:"),
             html.P(children=""),
@@ -39,7 +39,7 @@ layout= dbc.Container([
                 html.Strong("3. How can we gauge the popularity of the DEAD company across the regions of the Forgotten Realms?"),
                 html.P(children="To answer this question, we have to combine the findings and the answers of the two previous questions. Based on the first finding, we would suggest DEAD comanpy to come out some marketing strategies targeting on those nations that are not closed to the coast to boost the sales in those areas than those coastal nations. Based on the first guiding question, we think DEAD company should try to find out the reasons cause the longer delivery time in Mintarn and Blingdenstone since the orders from these two nations are not relatively high among all nations and put some measures to fix the problem and imrpove the delivery time. The last suggestion from us is that the company can lauch some sales promotions on those subtype of products that have worse sales. ")
             ])
-        ], style={"width":"20cm"})
+        ], style={"width":"25cm"})
     ]),
     html.Br()
 ])
