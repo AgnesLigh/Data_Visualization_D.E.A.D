@@ -41,7 +41,7 @@ layout= dbc.Container([
         html.Div([
             html.H3(children="To explore the relationship between 'where' and 'what' "),
             html.P("In this page, you can find the visualization of the order and customer related information in all the nations. The size and the color of the circle reflects on the number of orders/customers/cart price in that specific nation. The bigger and the lighter the color of the circle means larger the amount of orders/customers/cart price. You can also click on certain nation(s) in the nation list on the right side to hide the nation(s) on the map or double-click for selecting a nation of your interest to show solely on the map. And if you hover over a nation on the map, you will find more details about the order of that nation.")
-        ], style={"width":"20cm"})
+        ], style={"width":"25cm"})
     ]),
     html.Br(),
     dcc.Dropdown(
@@ -59,7 +59,7 @@ layout= dbc.Container([
     dbc.Row([
         html.Div([
             html.P("For more detailed information, you can find in the four charts below. Firstly, the pie chart indicates the distribution of users/customers.Secondly, the bar chart of the list of the territories in certain nation with the amount of order in each territory.")
-        ], style={"width":"20cm"})
+        ], style={"width":"25cm"})
     ]),
     dbc.Row([
         html.Div([
@@ -71,7 +71,7 @@ layout= dbc.Container([
     dbc.Row([
         html.Div([
             html.P("Thirdly, the bar chart indicating the amount of total sales from each subtype of products in all the nations. You can see the exact number of sales for certain subtype of product if you hover over.")
-        ], style ={"width":"20cm"})
+        ], style ={"width":"25cm"})
     ]),
     dbc.Row([
         html.Div([
@@ -81,7 +81,7 @@ layout= dbc.Container([
     dbc.Row([
         html.Div([
             html.P("Fourthly, the bart chart shows the average delivery time (days) by each nation. For the exact number of day, you can hover over the nation of your interest.")
-        ], style = {"width":"20cm"})
+        ], style = {"width":"25cm"})
     ]),
     dbc.Row([
         html.Div([
