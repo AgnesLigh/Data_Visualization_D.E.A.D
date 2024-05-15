@@ -40,7 +40,7 @@ layout= dbc.Container([
   dbc.Row([
         html.Div([
             html.H3(children="To explore the relationship between 'where' and 'what' "),
-            html.P("In this page, you can find the visualization of the order and customer related  information in all the nations. The size and the color of the circle reflects on the number of orders/customers/cart price in that specific nation. The bigger and the lighter the color of the circle means larger the amount of orders/customers/cart price. If you click on the location of a certain nation, we will find more details about the order of that nation. The detailed information consists of a pie chart which indicates the distribution of users/customers, a bar chart of the list of the territories in that nation with the amount of order in each territory and a bar chart indicating the amount of sales from each subtype of products. ")
+            html.P("In this page, you can find the visualization of the order and customer related information in all the nations. The size and the color of the circle reflects on the number of orders/customers/cart price in that specific nation. The bigger and the lighter the color of the circle means larger the amount of orders/customers/cart price. You can also click on certain nation(s) in the nation list on the right side to hide the nation(s) on the map or double-click for selecting a nation of your interest to show solely on the map. And if you hover over a nation on the map, you will find more details about the order of that nation.")
         ], style={"width":"20cm"})
     ]),
     html.Br(),
@@ -55,21 +55,40 @@ layout= dbc.Container([
         html.Div([
             dcc.Graph(id='map-graph')])
     ]),
+    html.Br(),
+    dbc.Row([
+        html.Div([
+            html.P("For more detailed information, you can find in the four charts below. Firstly, the pie chart indicates the distribution of users/customers.Secondly, the bar chart of the list of the territories in certain nation with the amount of order in each territory.")
+        ], style={"width":"20cm"})
+    ]),
     dbc.Row([
         html.Div([
             dcc.Graph(id='details-graph-pie-chart'),
             dcc.Graph(id='details-graph-territory-bar-chart')
             ], style={'display': 'flex', 'flex-direction': 'row'})  # CSS Flexbox)
     ]),
+    html.Br(),
+    dbc.Row([
+        html.Div([
+            html.P("Thirdly, the bar chart indicating the amount of total sales from each subtype of products in all the nations. You can see the exact number of sales for certain subtype of product if you hover over.")
+        ], style ={"width":"20cm"})
+    ]),
     dbc.Row([
         html.Div([
             dcc.Graph(id='details-graph-products-bar-chart')])
+    ]),
+    html.Br(),
+    dbc.Row([
+        html.Div([
+            html.P("Fourthly, the bart chart shows the average delivery time (days) by each nation. For the exact number of day, you can hover over the nation of your interest.")
+        ], style = {"width":"20cm"})
     ]),
     dbc.Row([
         html.Div([
             dcc.Graph(id='delivery-time-bar-chart')])
     ])
 ])
+
 
 
 
