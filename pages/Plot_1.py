@@ -7,7 +7,6 @@ from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 import plotly.graph_objects as go
 from PIL import Image, ImageOps
-import json
 
 pagename='Visualization plot 1'
 
